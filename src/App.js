@@ -3,6 +3,8 @@ import { DragDropContext } from "react-beautiful-dnd"
 import Column from "./components/Column" 
 import initialData from "./initialData" 
 
+let id = 7
+
 export default function App() {
   const [data, setData] = useState(initialData)
 
@@ -67,6 +69,26 @@ export default function App() {
       })
     }
   }
+
+  const addTask = e => {
+    e.preventDefault()
+    const taskContent = e.target.content.value
+    id++;
+
+    setData({
+      ...data,
+      tasks: {
+        ...data.tasks,
+        [`task${id}`]: {id: `task${id}`, content: taskContent}
+      },
+      columns: {
+        ...data.columns,
+        todo: {...data.columns.todo, taskIds: [...data.columns.todo.taskIds, `task${id}`]}
+      }
+    })
+    e.target.reset()
+  }
+
   return (
     <main>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -80,6 +102,11 @@ export default function App() {
           })
         }
       </DragDropContext>
+      <hr />
+      <form onSubmit={addTask}>
+        <input type="text" placeholder="Task Description" name="content" />&nbsp;
+        <button type="submit" children="Add the Task" />
+      </form>
     </main>
   )
 }
