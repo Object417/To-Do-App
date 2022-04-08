@@ -1,16 +1,12 @@
-import React from 'react'
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import App from './App'
-import Header from './components/Header';
+import React, { StrictMode} from "react"
+import * as ReactDOM from "react-dom"
+import App from "./App"
+import Header from "./components/Header" 
 
-const
-  rootElement = document.querySelector("#root"),
-  root = createRoot(rootElement)
-
-root.render(
+ReactDOM.render(
   <StrictMode>
     <Header />
     <App />
-  </StrictMode>
+  </StrictMode>,
+  document.querySelector("#root")
 )
