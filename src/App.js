@@ -1,4 +1,4 @@
-import { useState } from "react" 
+import { useEffect, useState } from "react" 
 import { DragDropContext } from "react-beautiful-dnd"
 import Column from "./components/Column" 
 import initialData from "./initialData" 
@@ -9,15 +9,6 @@ export default function App() {
   const [data, setData] = useState(initialData)
 
   const onDragEnd = result => {
-    console.log(result)
-    /* Okay, so in result we have:
-      draggableId: id of the task that is dragged
-      source: droppableId: column id from where task was taken
-              index: index of the task
-      destination: droppableId: column id where task was dropped
-                   index: index where the task should be placed
-    */
-
     const { destination, source, draggableId } = result
 
     // Dropped outside the list
@@ -25,7 +16,7 @@ export default function App() {
     // Dropped at the start position
     if(destination.droppableId === source.droppableId && destination.index === source.index) { return }
 
-    // Reorder tasks in one column
+    // Reorder tasks in a column
     if(destination.droppableId === source.droppableId) {
       const
         column = data.columns[source.droppableId],
@@ -36,7 +27,7 @@ export default function App() {
       // ...and insert with the new index
       newTaskIds.splice(destination.index, 0, draggableId)
 
-      const newColumn = { ...column, taskIds: newTaskIds }
+      const newColumn = {...column, taskIds: newTaskIds}
       setData({
         ...data,
         columns: {
@@ -89,6 +80,22 @@ export default function App() {
     e.target.reset()
   }
 
+  const deleteTask = (columnId, taskId) => {
+    let newTasks = {...data.tasks}
+    delete newTasks[taskId]
+    let newColumn = {...data.columns[columnId]}
+    newColumn.taskIds = newColumn.taskIds.filter(oldTaskId => oldTaskId !== taskId)
+
+    setData({
+      ...data,
+      tasks: newTasks,
+      columns: {
+        ...data.columns,
+        [columnId]: newColumn
+      }
+    })
+  }
+
   return (
     <main>
       <DragDropContext onDragEnd={onDragEnd}>
@@ -98,7 +105,7 @@ export default function App() {
               column = data.columns[columnId],
               tasks = column.taskIds.map(taskId => data.tasks[taskId])
 
-            return <Column key={column.id} column={column} tasks={tasks} />
+            return <Column key={column.id} column={column} tasks={tasks} deleteTask={deleteTask} />
           })
         }
       </DragDropContext>

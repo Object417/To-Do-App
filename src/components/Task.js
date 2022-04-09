@@ -1,6 +1,6 @@
-import { Draggable } from "react-beautiful-dnd";
+import { Draggable } from "react-beautiful-dnd"
 
-export default function Task({ task, index }) {
+export default function Task({ task, index, column, deleteTask }) {
   return (
     <Draggable draggableId={task.id} index={index}>
       {(provided) => (
@@ -10,7 +10,8 @@ export default function Task({ task, index }) {
           {...provided.dragHandleProps}
           ref={provided.innerRef}
         >
-          { task.content }
+          { task.content }&nbsp;
+          <button onClick={() => deleteTask(column.id, task.id)} children="[X]" />
         </div>
       )}
     </Draggable>
