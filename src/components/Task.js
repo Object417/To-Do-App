@@ -2,7 +2,7 @@ import { Draggable } from "react-beautiful-dnd"
 
 export default function Task({ task, index, column, deleteTask }) {
   return (
-    <Draggable draggableId={task.id} index={index}>
+    <Draggable draggableId={task.id} index={index} type={"TASK"}>
       {(provided) => (
         <div
           className="task"

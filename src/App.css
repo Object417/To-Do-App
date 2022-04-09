@@ -1,0 +1,19 @@
+.columns {
+  display: flex;
+}
+.column {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  flex: 1;
+  background-color: lightyellow;
+  margin: 0 .5rem;
+  padding: .5rem;
+}
+.task {
+  margin: .5rem 0;
+  padding: .25rem;
+  background-color: lightgreen;
+}
+.taskList {
+  min-height: 100%;
+}

@@ -1,7 +1,9 @@
-import { useEffect, useState } from "react" 
+import { useEffect, useState } from "react"
 import { DragDropContext } from "react-beautiful-dnd"
-import Column from "./components/Column" 
-import initialData from "./initialData" 
+import Column from "./components/Column"
+import initialData from "./initialData"
+import "./App.css"
+import { Droppable } from "react-beautiful-dnd"
 
 let id = 7
 
@@ -9,12 +11,23 @@ export default function App() {
   const [data, setData] = useState(initialData)
 
   const onDragEnd = result => {
-    const { destination, source, draggableId } = result
+    const { destination, source, draggableId, type } = result
 
     // Dropped outside the list
     if(!destination) { return }
     // Dropped at the start position
     if(destination.droppableId === source.droppableId && destination.index === source.index) { return }
+
+    if(type === "COLUMN") {
+      const newColumnOrder = [...data.columnOrder]
+
+      newColumnOrder.splice(source.index, 1)
+      newColumnOrder.splice(destination.index, 0, draggableId)
+
+      setData({...data, columnOrder: newColumnOrder})
+
+      return
+    }
 
     // Reorder tasks in a column
     if(destination.droppableId === source.droppableId) {
@@ -99,15 +112,26 @@ export default function App() {
   return (
     <main>
       <DragDropContext onDragEnd={onDragEnd}>
-        {
-          data.columnOrder.map(columnId => {
-            const
-              column = data.columns[columnId],
-              tasks = column.taskIds.map(taskId => data.tasks[taskId])
+        <Droppable droppableId="mainDroppable" type="COLUMN" direction="horizontal">
 
-            return <Column key={column.id} column={column} tasks={tasks} deleteTask={deleteTask} />
-          })
-        }
+          {(provided) => <div
+            className="columns"
+            {...provided.draggableProps}
+            ref={provided.innerRef}
+          >
+            {
+              data.columnOrder.map((columnId, index) => {
+                const
+                  column = data.columns[columnId],
+                  tasks = column.taskIds.map(taskId => data.tasks[taskId])
+
+                return <Column key={column.id} column={column} index={index} tasks={tasks} deleteTask={deleteTask} />
+              })
+            }
+            {provided.placeholder}
+          </div>}
+
+        </Droppable>
       </DragDropContext>
       <hr />
       <form onSubmit={addTask}>
