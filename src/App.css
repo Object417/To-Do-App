@@ -1,19 +1,16 @@
-.columns {
-  display: flex;
+.MuiTooltip-tooltip {
+  padding: 0 !important;
+  background: transparent !important;
 }
-.column {
-  display: grid;
-  grid-template-rows: auto 1fr;
-  flex: 1;
-  background-color: lightyellow;
-  margin: 0 .5rem;
-  padding: .5rem;
+::-webkit-scrollbar {
+  /* width: 0.5rem; */
+  /* background: transparent; */
 }
-.task {
-  margin: .5rem 0;
-  padding: .25rem;
-  background-color: lightgreen;
+::-webkit-scrollbar-track {
+  /* background: transparent; */
 }
-.taskList {
-  min-height: 100%;
+::-webkit-scrollbar-thumb {
+  /* border-radius: 0.5rem; */
+  /* box-shadow: inset 0 0 0.25rem rgba(0, 0, 0, 0.1); */
+  /* background-color: #4285f4; */
 }
