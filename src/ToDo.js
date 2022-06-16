@@ -9,14 +9,16 @@ import {
   DialogTitle,
   Grid,
   Alert,
+  useMediaQuery,
 } from "@mui/material"
 import initialData from "./initialData"
 import Column from "./components/Column"
 import AddTaskForm from "./components/AddTaskForm"
+import { grey } from "@mui/material/colors"
 
 let id = 7
 
-const ToDo = ({ showSnackMessage }) => {
+const ToDo = ({ showSnackMessage, theme }) => {
   // Main state
   const [data, setData] = useState(initialData)
 
@@ -93,9 +95,13 @@ const ToDo = ({ showSnackMessage }) => {
   const addTask = (e) => {
     e.preventDefault()
     e.stopPropagation()
-    const taskContent = inputVal
+    const taskContent = inputVal.trim()
 
-    if (taskContent < 2 || taskContent > 80) {
+    if (
+      /^\s*$/.test(taskContent) ||
+      taskContent.length < 2 ||
+      taskContent.length > 80
+    ) {
       showSnackMessage(
         <Alert
           severity="error"
@@ -199,21 +205,31 @@ const ToDo = ({ showSnackMessage }) => {
     })
   }
 
+  let matchesMobile = useMediaQuery(theme.breakpoints.down("lg"))
+  console.log(matchesMobile, theme.breakpoints)
+
   return (
     <>
       <DragDropContext onDragEnd={onDragEnd}>
         <Droppable
           droppableId="mainDroppable"
           type="COLUMN"
-          direction="horizontal"
+          direction={matchesMobile ? "vertical" : "horizontal"}
         >
-          {(provided) => (
+          {(provided, snapshot) => (
             <Grid
               container
               spacing={2}
               className="columns"
               {...provided.draggableProps}
               ref={provided.innerRef}
+              sx={{
+                bgcolor: snapshot.isDraggingOver
+                  ? theme.palette.mode === "dark"
+                    ? grey[900]
+                    : grey[300]
+                  : "background.default",
+              }}
             >
               {data.columnOrder.map((columnId, index) => {
                 const column = data.columns[columnId],
@@ -228,6 +244,7 @@ const ToDo = ({ showSnackMessage }) => {
                     editTask={editTask}
                     deleteTask={confirmTaskDeletion}
                     showSnackMessage={showSnackMessage}
+                    theme={theme}
                   />
                 )
               })}
@@ -240,6 +257,7 @@ const ToDo = ({ showSnackMessage }) => {
         addTask={addTask}
         inputVal={inputVal}
         inputOnChange={inputOnChange}
+        theme={theme}
       />
       {/* dialogOpen && <Element />
         Ha-ha, LOL! Nope, man, that's wrong.

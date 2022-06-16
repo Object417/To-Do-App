@@ -20,6 +20,7 @@ export default function Task({
   editTask,
   deleteTask,
   showSnackMessage,
+  theme,
 }) {
   const [isHovered, setIsHovered] = useState(false),
     [isEditing, setIsEditing] = useState(false),
@@ -84,7 +85,12 @@ export default function Task({
           ref={provided.innerRef}
           sx={{
             display: "flex",
-            bgcolor: snapshot.isDragging ? grey[500] : "background.default",
+            bgcolor: snapshot.isDragging
+              ? theme.palette.mode === "dark"
+                ? grey[800]
+                : grey[200]
+              : "background.default",
+            transition: `all ${theme.transitions.easing.easeIn} ${theme.transitions.duration.short}`,
           }}
           onMouseOver={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}

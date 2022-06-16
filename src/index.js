@@ -77,9 +77,19 @@ const App = () => {
         <Header
           toggleThemeButton={toggleThemeButton}
           showSnackMessage={showSnackMessage}
+          theme={theme}
         />
-        <Box component="main">
-          <Container children={<ToDo showSnackMessage={showSnackMessage} />} />
+        <Box
+          component="main"
+          sx={{
+            mt: 2,
+          }}
+        >
+          <Container
+            children={
+              <ToDo theme={theme} showSnackMessage={showSnackMessage} />
+            }
+          />
         </Box>
       </Box>
       <Snackbar

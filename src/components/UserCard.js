@@ -9,6 +9,7 @@ import {
   Avatar,
   Grid,
   Divider,
+  Skeleton,
 } from "@mui/material"
 import React from "react"
 
@@ -82,8 +83,34 @@ const UserCard = ({ user }) => {
           ))}
         </Grid>
       </Card>
-    )) ||
-    "Skeleton ;D"
+    )) || (
+      <Card>
+        <CardHeader
+          avatar={
+            <Skeleton
+              variant="circular"
+              sx={{
+                width: 40,
+                height: 40,
+              }}
+            />
+          }
+          title={<Skeleton variant="text" />}
+          subheader={<Skeleton variant="text" />}
+        />
+        <CardContent
+          children={
+            <Skeleton
+              variant="rectangular"
+              sx={{
+                width: "230px",
+                height: "40px",
+              }}
+            />
+          }
+        />
+      </Card>
+    )
   )
 }
 
