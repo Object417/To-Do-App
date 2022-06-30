@@ -3,13 +3,23 @@ import { Add, DarkMode, ImportExport, LightMode } from "@mui/icons-material"
 import { IconButton, List, ListItem, Tooltip } from "@mui/material"
 import { toggleMode } from "../../store/slices/themeSlice"
 import { useSelector, useDispatch } from "react-redux"
+import { addTask } from "../../store/slices/appSlice"
 
 const HeaderActionButtons = () => {
   const mode = useSelector((state) => state.theme.mode)
   const dispatch = useDispatch()
   const actionButtons = [
     {
-      action: () => {},
+      action: () => {
+        dispatch(
+          addTask({
+            id: "task-" + Date.now(),
+            columnId: "column-1",
+            title: "Some task",
+            desc: "Nope"
+          })
+        )
+      },
       icon: { light: <Add />, dark: <Add /> },
       tooltip: "Add task"
     },

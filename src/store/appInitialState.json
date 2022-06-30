@@ -1,0 +1,98 @@
+{
+  "tasks": {
+    "task-1": {
+      "id": "task-1",
+      "columnId": "column-1",
+      "title": "My 1st task",
+      "desc": "Donec fermentum leo tempor dui tristique, ac mollis sem gravida. Vivamus finibus magna eget sem ultricies, at vehicula mi vestibulum. Vivamus facilisis dignissim tellus, mollis varius tortor congue et. Quisque quam metus, imperdiet et velit et, convallis consectetur odio. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec lobortis dui non sem porttitor, ac luctus massa faucibus. Aliquam erat volutpat. Nunc in aliquam metus.",
+      "color": null,
+      "date": null,
+      "completed": false
+    },
+    "task-2": {
+      "id": "task-2",
+      "columnId": "column-1",
+      "title": "My 2nd task",
+      "desc": "Etiam aliquet venenatis ultrices. Fusce porta consectetur erat quis malesuada. Morbi pellentesque, augue non tempus finibus, diam erat lobortis ipsum, eget maximus lorem mauris fringilla arcu. Fusce quis rhoncus enim, vel rutrum lorem. Cras mattis eleifend orci et convallis. Mauris cursus dolor ullamcorper mollis rutrum. Mauris dignissim condimentum mauris eu tristique.",
+      "color": null,
+      "date": null,
+      "completed": false
+    },
+    "task-3": {
+      "id": "task-3",
+      "columnId": "column-2",
+      "title": "My 3nd task",
+      "desc": "Etiam aliquet venenatis ultrices. Fusce porta consectetur erat quis malesuada. Morbi pellentesque, augue non tempus finibus, diam erat lobortis ipsum, eget maximus lorem mauris fringilla arcu. Fusce quis rhoncus enim, vel rutrum lorem. Cras mattis eleifend orci et convallis. Mauris cursus dolor ullamcorper mollis rutrum. Mauris dignissim condimentum mauris eu tristique.",
+      "color": null,
+      "date": null,
+      "completed": false
+    },
+    "task-4": {
+      "id": "task-4",
+      "columnId": "column-2",
+      "title": "My 4nd task",
+      "desc": "Etiam aliquet venenatis ultrices. Fusce porta consectetur erat quis malesuada. Morbi pellentesque, augue non tempus finibus, diam erat lobortis ipsum, eget maximus lorem mauris fringilla arcu. Fusce quis rhoncus enim, vel rutrum lorem. Cras mattis eleifend orci et convallis. Mauris cursus dolor ullamcorper mollis rutrum. Mauris dignissim condimentum mauris eu tristique.",
+      "color": null,
+      "date": null,
+      "completed": false
+    },
+    "task-5": {
+      "id": "task-5",
+      "columnId": "column-3",
+      "title": "My 5nd task",
+      "desc": "Etiam aliquet venenatis ultrices. Fusce porta consectetur erat quis malesuada. Morbi pellentesque, augue non tempus finibus, diam erat lobortis ipsum, eget maximus lorem mauris fringilla arcu. Fusce quis rhoncus enim, vel rutrum lorem. Cras mattis eleifend orci et convallis. Mauris cursus dolor ullamcorper mollis rutrum. Mauris dignissim condimentum mauris eu tristique.",
+      "color": null,
+      "date": null,
+      "completed": false
+    },
+    "task-6": {
+      "id": "task-6",
+      "columnId": "column-4",
+      "title": "Lol",
+      "desc": "Lol",
+      "color": null,
+      "date": null,
+      "completed": false
+    },
+    "task-7": {
+      "id": "task-7",
+      "columnId": "column-4",
+      "title": "Very lol",
+      "desc": "Lol Very",
+      "color": null,
+      "date": null,
+      "completed": false
+    }
+  },
+  "columns": {
+    "column-1": {
+      "id": "column-1",
+      "color": null,
+      "title": "To Do",
+      "isCompletedHidden": false,
+      "taskOrder": ["task-2", "task-1"]
+    },
+    "column-2": {
+      "id": "column-2",
+      "color": null,
+      "title": "In Progress",
+      "isCompletedHidden": false,
+      "taskOrder": ["task-3", "task-4"]
+    },
+    "column-3": {
+      "id": "column-3",
+      "color": null,
+      "title": "Done",
+      "isCompletedHidden": false,
+      "taskOrder": ["task-5"]
+    },
+    "column-4": {
+      "id": "column-4",
+      "color": null,
+      "title": "Abandoned",
+      "isCompletedHidden": false,
+      "taskOrder": ["task-6", "task-7"]
+    }
+  },
+  "columnOrder": ["column-1", "column-2", "column-4", "column-3"]
+}
