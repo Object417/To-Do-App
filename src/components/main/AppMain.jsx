@@ -8,8 +8,8 @@ const AppMain = () => {
   const { columnOrder, columns, tasks } = appState
 
   return (
-    <Box component="main" sx={{ py: 2, maxWidth: "100%", overflow: "scroll" }}>
-      <Grid container gap={2} sx={{ px: 8, flexWrap: "nowrap" }}>
+    <Box component="main" sx={{ p: 2, maxWidth: "100%", overflowX: "auto" }}>
+      <Grid container gap={2} sx={{ flexWrap: "nowrap", width: "fit-content" }}>
         {columnOrder.map((columnId, index) => {
           const columnTasks = columns[columnId].taskOrder.map(
             (taskId) => tasks[taskId]
