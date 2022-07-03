@@ -6,6 +6,10 @@
 - Add columns form (modal)
 - Edit and delete columns (modal)
 - Column actions in reducer (add, edit, delete)
+- Reorder and drag-n-drop
 - Better render (d&t, colors, action buttons)
 - Accordions (for the whole column & for the completed tasks)
 - Layout adaptation (PCs, tablets and phones)
+- Animations
+- Better phones accessability & adaptation
+- Polish
