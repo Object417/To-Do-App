@@ -1,6 +1,7 @@
 import { Box, ThemeProvider } from "@mui/material"
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
+import AppModal from "./components/modals/AppModal"
 import AppHeader from "./components/header/AppHeader"
 import AppMain from "./components/main/AppMain"
 import { getTheme } from "./store/themes"
@@ -23,6 +24,7 @@ const App = () => {
       >
         <AppHeader />
         <AppMain />
+        <AppModal />
       </Box>
     </ThemeProvider>
   )

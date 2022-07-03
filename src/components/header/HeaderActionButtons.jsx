@@ -3,7 +3,7 @@ import { Add, DarkMode, ImportExport, LightMode } from "@mui/icons-material"
 import { IconButton, List, ListItem, Tooltip } from "@mui/material"
 import { toggleMode } from "../../store/slices/themeSlice"
 import { useSelector, useDispatch } from "react-redux"
-import { addTask } from "../../store/slices/appSlice"
+import { setState } from "../../store/slices/appModalSlice"
 
 const HeaderActionButtons = () => {
   const mode = useSelector((state) => state.theme.mode)
@@ -11,20 +11,16 @@ const HeaderActionButtons = () => {
   const actionButtons = [
     {
       action: () => {
-        dispatch(
-          addTask({
-            id: "task-" + Date.now(),
-            columnId: "column-1",
-            title: "Some task",
-            desc: "Nope"
-          })
-        )
+        // Show modal with <AddTaskForm>
+        dispatch(setState({ open: true, variant: "addTask" }))
       },
       icon: { light: <Add />, dark: <Add /> },
       tooltip: "Add task"
     },
     {
-      action: () => {},
+      action: () => {
+        // Show modal with <ImportExportForm>
+      },
       icon: { light: <ImportExport />, dark: <ImportExport /> },
       tooltip: "Import/Export tasks as JSON"
     },

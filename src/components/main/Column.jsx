@@ -11,8 +11,6 @@ import React from "react"
 import Task from "./Task"
 
 const Column = ({ column, tasks }) => {
-  console.log(tasks)
-
   return (
     <Card className={column.id} sx={{ maxWidth: "100rem", minWidth: "50rem" }}>
       <CardHeader title={column.title} subheader="2 days ago" />
