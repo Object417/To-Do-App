@@ -8,6 +8,7 @@ import "@fontsource/roboto/500.css"
 import "@fontsource/roboto/700.css"
 import { Provider } from "react-redux"
 import store from "./store/store"
+import reportWebVitals from "./reportWebVitals"
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,3 +19,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById("root")
 )
+
+reportWebVitals(console.info)
