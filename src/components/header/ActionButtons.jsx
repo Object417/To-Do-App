@@ -3,16 +3,16 @@ import { Add, DarkMode, ImportExport, LightMode } from "@mui/icons-material"
 import { IconButton, List, ListItem, Tooltip } from "@mui/material"
 import { toggleMode } from "../../store/slices/themeSlice"
 import { useSelector, useDispatch } from "react-redux"
-import { setState } from "../../store/slices/appModalSlice"
+import { setState as setAppModalState } from "../../store/slices/appModalSlice"
 
-const HeaderActionButtons = () => {
+const ActionButtons = () => {
   const mode = useSelector((state) => state.theme.mode)
   const dispatch = useDispatch()
   const actionButtons = [
     {
       action: () => {
         // Show modal with <AddTaskForm>
-        dispatch(setState({ open: true, variant: "addTask" }))
+        dispatch(setAppModalState({ open: true, variant: "addTask" }))
       },
       icon: { light: <Add />, dark: <Add /> },
       tooltip: "Add task"
@@ -52,4 +52,4 @@ const HeaderActionButtons = () => {
   )
 }
 
-export default HeaderActionButtons
+export default ActionButtons

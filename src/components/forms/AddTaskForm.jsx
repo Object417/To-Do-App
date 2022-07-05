@@ -9,7 +9,7 @@ import {
 import { useFormik } from "formik"
 import React from "react"
 import { useDispatch } from "react-redux"
-import { setOpen } from "../../store/slices/appModalSlice"
+import { setOpen as setAppModalOpen } from "../../store/slices/appModalSlice"
 import { addTask } from "../../store/slices/appSlice"
 
 const AddTaskForm = () => {
@@ -28,7 +28,7 @@ const AddTaskForm = () => {
           ...values
         })
       )
-      dispatch(setOpen(false))
+      dispatch(setAppModalOpen(false))
     }
   })
 
@@ -67,7 +67,10 @@ const AddTaskForm = () => {
         </Box>
       </DialogContent>
       <DialogActions>
-        <Button variant="outlined" onClick={() => dispatch(setOpen(false))}>
+        <Button
+          variant="outlined"
+          onClick={() => dispatch(setAppModalOpen(false))}
+        >
           Cancel
         </Button>
         <Button

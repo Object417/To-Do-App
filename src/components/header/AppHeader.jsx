@@ -10,7 +10,7 @@ import { Container } from "@mui/system"
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { getTheme } from "../../store/themes"
-import HeaderActionButtons from "./HeaderActionButtons"
+import ActionButtons from "./ActionButtons"
 
 const AppHeader = () => {
   const mode = useSelector((state) => state.theme.mode)
@@ -34,7 +34,7 @@ const AppHeader = () => {
               To Do App
             </Typography>
 
-            <HeaderActionButtons />
+            <ActionButtons />
           </Container>
         </Toolbar>
       </AppBar>
