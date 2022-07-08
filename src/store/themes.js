@@ -1,6 +1,25 @@
 import { createTheme } from "@mui/material"
 
-export const lightTheme = createTheme({ palette: { mode: "light" } })
-export const darkTheme = createTheme({ palette: { mode: "dark" } })
+const themes = {}
 
-export const getTheme = (mode) => (mode === "light" ? lightTheme : darkTheme)
+;["light", "dark"].forEach((mode) => {
+  themes[mode] = createTheme({
+    palette: { mode: mode },
+    components: {
+      MuiTooltip: {
+        defaultProps: {
+          arrow: true,
+          enterDelay: 300,
+          leaveDelay: 100
+        }
+      },
+      MuiButton: {
+        defaultProps: {
+          variant: "contained"
+        }
+      }
+    }
+  })
+})
+
+export default themes

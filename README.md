@@ -2,8 +2,8 @@
 
 - Form for adding tasks (modal) &mdash; **IN PROGRESS**
   - Add validation (`yup` I guess is good enough for it)
-  - Change modal actions name
-  - Increase functionality
+  - ~~Change modal actions name~~
+  - ~~Increase functionality~~
   - Think about how you can display `\n` in `HTML`
 - Full task info view + form for editing (modal) &mdash; **IN PROGRESS**
 - More task actions in reducer
@@ -11,6 +11,8 @@
   - ~~Edit tasks~~
   - ~~Star task~~
   - ~~Complete task~~
+  - Reorder tasks in a column
+  - Move tasks between columns
 - Add columns form (modal)
 - Edit and delete columns (modal)
 - Column actions in reducer (add, edit, delete)

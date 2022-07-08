@@ -5,7 +5,8 @@ import {
   ListItem,
   ListItemButton,
   ListItemIcon,
-  ListItemText
+  ListItemText,
+  Tooltip
 } from "@mui/material"
 import {
   StarOutline,
@@ -25,19 +26,23 @@ const Task = ({ task }) => {
   return (
     <ListItem>
       <ButtonGroup>
-        <IconButton
-          edge="start"
-          onClick={() => dispatch(completeTask(task.id))}
-        >
-          {task.completed ? <CheckCircleOutline /> : <RadioButtonUnchecked />}
-        </IconButton>
-        <IconButton
-          edge="start"
-          onClick={() => dispatch(starTask(task.id))}
-          color={task.starred ? "primary" : "default"}
-        >
-          {task.starred ? <Star /> : <StarOutline />}
-        </IconButton>
+        <Tooltip title="Mark as completed">
+          <IconButton
+            edge="start"
+            onClick={() => dispatch(completeTask(task.id))}
+          >
+            {task.completed ? <CheckCircleOutline /> : <RadioButtonUnchecked />}
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Mark as starred">
+          <IconButton
+            edge="start"
+            onClick={() => dispatch(starTask(task.id))}
+            color={task.starred ? "primary" : "default"}
+          >
+            {task.starred ? <Star /> : <StarOutline />}
+          </IconButton>
+        </Tooltip>
       </ButtonGroup>
 
       <ListItemButton>
@@ -56,17 +61,21 @@ const Task = ({ task }) => {
       </ListItemButton>
 
       <ButtonGroup>
-        <IconButton edge="end">
-          <Edit />
-        </IconButton>
-        <IconButton
-          edge="end"
-          onClick={() =>
-            dispatch(deleteTask({ id: task.id, columnId: task.columnId }))
-          }
-        >
-          <Delete />
-        </IconButton>
+        <Tooltip title="Edit the task">
+          <IconButton edge="end">
+            <Edit />
+          </IconButton>
+        </Tooltip>
+        <Tooltip title="Delete the task (no confirmation)">
+          <IconButton
+            edge="end"
+            onClick={() =>
+              dispatch(deleteTask({ id: task.id, columnId: task.columnId }))
+            }
+          >
+            <Delete />
+          </IconButton>
+        </Tooltip>
       </ButtonGroup>
     </ListItem>
   )

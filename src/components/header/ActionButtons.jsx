@@ -34,13 +34,7 @@ const ActionButtons = () => {
   return (
     <List dense sx={{ ml: "auto", display: "flex" }}>
       {actionButtons.map((elem, index) => (
-        <Tooltip
-          key={"headerAction" + index}
-          title={elem.tooltip}
-          enterDelay={300}
-          leaveDelay={100}
-          arrow
-        >
+        <Tooltip key={"headerAction" + index} title={elem.tooltip}>
           <ListItem disablePadding>
             <IconButton onClick={elem.action} sx={{ color: "#fff" }}>
               {mode === "light" ? elem.icon.light : elem.icon.dark}

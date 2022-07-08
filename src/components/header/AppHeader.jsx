@@ -9,12 +9,12 @@ import {
 import { Container } from "@mui/system"
 import React from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { getTheme } from "../../store/themes"
+import themes from "../../store/themes"
 import ActionButtons from "./ActionButtons"
 
 const AppHeader = () => {
   const mode = useSelector((state) => state.theme.mode)
-  const theme = getTheme(mode)
+  const theme = themes[mode]
 
   const trigger = useScrollTrigger({ target: window })
 
