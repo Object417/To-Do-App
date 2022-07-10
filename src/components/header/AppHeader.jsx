@@ -8,7 +8,7 @@ import {
 } from "@mui/material"
 import { Container } from "@mui/system"
 import React from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector } from "react-redux"
 import themes from "../../store/themes"
 import ActionButtons from "./ActionButtons"
 

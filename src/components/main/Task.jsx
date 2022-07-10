@@ -1,10 +1,8 @@
 import {
   ButtonGroup,
-  Icon,
   IconButton,
   ListItem,
   ListItemButton,
-  ListItemIcon,
   ListItemText,
   Tooltip
 } from "@mui/material"

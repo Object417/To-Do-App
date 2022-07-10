@@ -1,14 +1,10 @@
 import {
   Box,
   Button,
-  ButtonGroup,
   Checkbox,
   DialogActions,
   DialogContent,
   DialogTitle,
-  Grid,
-  IconButton,
-  ListItem,
   MenuItem,
   Select,
   TextField,
@@ -27,12 +23,15 @@ import { setOpen as setAppModalOpen } from "../../store/slices/appModalSlice"
 import { addTask } from "../../store/slices/appSlice"
 import { DesktopDatePicker } from "@mui/x-date-pickers"
 import { useSelector } from "react-redux"
-import { ChromePicker, SketchPicker, TwitterPicker } from "react-color"
 import moment from "moment"
+import themes from "../../store/themes"
 
 const AddTaskForm = () => {
   const dispatch = useDispatch()
   const state = useSelector((state) => state.app)
+  const mode = useSelector((state) => state.theme.mode)
+
+  const theme = themes[mode]
 
   const formik = useFormik({
     initialValues: {
@@ -40,15 +39,14 @@ const AddTaskForm = () => {
       desc: "",
       completed: false,
       starred: false,
-      date: /* moment().valueOf() */ null,
-      columnId: state.columns[Object.keys(state.columns)[0]]?.id || null
-      // color: ""
+      date: moment().valueOf(),
+      columnId: state.columns[Object.keys(state.columns)[0]]?.id || null,
+      color: ""
     },
     onSubmit: (values) => {
       dispatch(
         addTask({
           id: moment().valueOf(),
-          columnId: "column-2",
           ...values
         })
       )
@@ -58,9 +56,9 @@ const AddTaskForm = () => {
 
   return (
     <>
-      <DialogTitle>Add Task</DialogTitle>
-      <DialogContent>
-        <Box component="form" id="addTaskForm" onSubmit={formik.handleSubmit}>
+      <Box component="form" id="addTaskForm" onSubmit={formik.handleSubmit}>
+        <DialogTitle>Add Task</DialogTitle>
+        <DialogContent>
           <Box
             sx={{
               display: "flex",
@@ -106,7 +104,6 @@ const AddTaskForm = () => {
               name="columnId"
               value={formik.values.columnId}
               onChange={formik.handleChange}
-              // sx={{ flexGrow: 1 }}
             >
               {state.columnOrder.map((columnId, index) => (
                 <MenuItem key={"option" + columnId} value={columnId}>
@@ -115,6 +112,7 @@ const AddTaskForm = () => {
               ))}
             </Select>
           </Box>
+
           <TextField
             id="desc"
             name="desc"
@@ -128,26 +126,45 @@ const AddTaskForm = () => {
             sx={{ mb: 1 }}
           />
 
-          <DesktopDatePicker
-            id="date"
-            name="date"
-            label="Date"
-            inputFormat="DD/MM/yyyy"
-            value={formik.values.date}
-            onChange={(value) => {
-              console.log(value)
-              formik.setFieldValue("date", value ? value.valueOf() : null)
-            }}
-            // onChange={(value) => console.log(value)}
-            renderInput={(params) => <TextField {...params} />}
-          />
-          {/* <TwitterPicker
-            id="color"
-            name="color"
-            color={formik.values.color}
-            // onChange={(value) => console.log(value)}
-            onChange={(value) => formik.setFieldValue("color", value.hex)}
-          /> */}
+          <Box sx={{ display: "flex", alignItems: "baseline" }}>
+            <DesktopDatePicker
+              id="date"
+              name="date"
+              label="Date"
+              inputFormat="DD/MM/yyyy"
+              value={formik.values.date}
+              onChange={(value) =>
+                formik.setFieldValue("date", value ? value.valueOf() : null)
+              }
+              renderInput={(params) => <TextField {...params} />}
+              sx={{ flexGrow: 1 }}
+            />
+
+            <Box
+              sx={{
+                aspectRatio: "1/1",
+                objectFit: "contain",
+                bgcolor: formik.values.color,
+                borderRadius: "50%",
+                border: `1px solid ${theme.palette.action.disabled}`,
+                alignSelf: "center",
+                mx: 1,
+                flexGrow: 1.5,
+                "&:hover": {
+                  border: `1px solid ${theme.palette.action.active}`
+                }
+              }}
+            />
+            <TextField
+              name="color"
+              id="color"
+              label="Color"
+              placeholder="#51eba6"
+              value={formik.values.color}
+              onChange={formik.handleChange}
+              sx={{ flexGrow: 1 }}
+            />
+          </Box>
 
           <Button
             sx={{ display: "none" }}
@@ -155,22 +172,17 @@ const AddTaskForm = () => {
             type="submit"
             id="addTaskFormBtn"
           ></Button>
-        </Box>
-      </DialogContent>
-      <DialogActions>
-        <Button
-          variant="outlined"
-          onClick={() => dispatch(setAppModalOpen(false))}
-        >
-          Cancel
-        </Button>
-        <Button
-          // Yeah, bro!
-          onClick={() => document.querySelector("#addTaskFormBtn").click()}
-        >
-          Submit
-        </Button>
-      </DialogActions>
+        </DialogContent>
+        <DialogActions>
+          <Button
+            variant="outlined"
+            onClick={() => dispatch(setAppModalOpen(false))}
+          >
+            Cancel
+          </Button>
+          <Button type="submit">Submit</Button>
+        </DialogActions>
+      </Box>
     </>
   )
 }
