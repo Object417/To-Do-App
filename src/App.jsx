@@ -1,5 +1,6 @@
 import { Box, CssBaseline, ThemeProvider, Typography } from "@mui/material"
 import { useSelector } from "react-redux"
+import ColumnList from "./components/ColumnList"
 import Header from "./components/Header/Header"
 import { modeSelector } from "./store/slices/themeSlice"
 import themes from "./store/themes"
@@ -12,6 +13,9 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Header />
+      <Box component="main">
+        <ColumnList />
+      </Box>
     </ThemeProvider>
   )
 }
