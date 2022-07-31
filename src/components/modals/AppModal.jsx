@@ -2,6 +2,7 @@ import { Dialog, Paper } from "@mui/material"
 import { Container } from "@mui/system"
 import React from "react"
 import { useSelector } from "react-redux"
+import AddColumnForm from "../forms/AddColumnForm"
 import AddTaskForm from "../forms/AddTaskForm"
 
 const AppModal = () => {
@@ -11,6 +12,9 @@ const AppModal = () => {
   switch (variant) {
     case "addTask":
       content = <AddTaskForm />
+      break
+    case "addColumn":
+      content = <AddColumnForm />
       break
     default:
       content = null

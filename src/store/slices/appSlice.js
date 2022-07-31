@@ -23,10 +23,34 @@ const appSlice = createSlice({
       state.columns[payload.columnId].taskOrder = state.columns[
         payload.columnId
       ].taskOrder.filter((taskId) => taskId !== payload.id) // And also remove from the column's taskOrder
+    },
+    addColumn: (state, { payload }) => {
+      state.columns[payload.id] = payload // Add the column to all the columns
+      state.columnOrder.push(payload.id) // Also add it to the render queue
+    },
+    editColumn: (state, { payload }) => {
+      state.columns[payload.id] = payload // Just replace with the new one
+    },
+    deleteColumn: (state, { payload }) => {
+      state.columns[payload.id].taskOrder.forEach((taskId) => {
+        delete state.tasks[taskId]
+      }) // Delete all the tasks in the column
+      delete state.columns[payload.id] // Delete the column itself
+      state.columnOrder = state.columnOrder.filter(
+        (columnId) => columnId !== payload.id
+      ) // Delete the column from the render queue
     }
   }
 })
 
-export const { addTask, editTask, starTask, completeTask, deleteTask } =
-  appSlice.actions
+export const {
+  addTask,
+  editTask,
+  starTask,
+  completeTask,
+  deleteTask,
+  addColumn,
+  editColumn,
+  deleteColumn
+} = appSlice.actions
 export default appSlice.reducer
